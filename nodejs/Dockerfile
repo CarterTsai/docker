@@ -6,12 +6,15 @@ RUN     apt-get update && apt-get upgrade -y
 RUN     apt-get install -y nodejs npm
 
 # Bundle app source
-ADD package.json /srv/package.json
-ADD run.js /srv/run.js
+ADD app /srv/app
 
 # Install app dependencies
-RUN cd /srv; npm install
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN cd /srv/app; npm install
+
+VOLUME ['/srv/app']
 
 EXPOSE 3000
 
-CMD ["nodejs", "/srv/run.js"]
+WORKDIR /srv/app/
+CMD ["npm","start"]

@@ -1,5 +1,3 @@
 #!/bin/bash
-
-sudo docker rm  -f $(cat error.log | grep '^Error' | awk '{print $9}')
-sudo docker rmi $(sudo docker images | grep "^<none>" | awk '{print $3}') 2> error.log
-sudo docker images | grep "^<none>"
+sudo docker rm `sudo docker ps --no-trunc -aq`
+sudo docker images | awk '{if($1=="<none>") {print $3}}' | xargs sudo docker rmi
