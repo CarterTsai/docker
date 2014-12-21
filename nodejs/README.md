@@ -21,6 +21,11 @@ $> sudo docker pull cartertsai/ubuntu-node:0.0.1
 ```
 $> sudo docker run -i -t --rm -p 3000:3000 cartertsai/ubuntu-node:0.0.1
 ```
+or mount a your volume for app
+
+```
+$> sudo docker run -it -v $PWD/app/:/srv/app  -p 3000:3000 cartertsai/ubuntu-node:0.0.1
+```
 
 ### 3. Open Your Browser
 
